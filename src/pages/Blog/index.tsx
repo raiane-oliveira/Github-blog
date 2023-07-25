@@ -1,3 +1,5 @@
+import { Profile } from './components/Profile'
+
 export function Blog() {
-  return <div>Blog</div>
+  return <Profile />
 }
