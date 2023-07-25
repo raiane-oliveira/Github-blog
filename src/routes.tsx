@@ -11,6 +11,10 @@ export const router = createBrowserRouter([
         path: '/',
         element: <Blog />,
       },
+      {
+        path: '/post/:id',
+        element: <div>Post</div>,
+      },
     ],
   },
 ])
