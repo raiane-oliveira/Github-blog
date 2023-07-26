@@ -1,11 +1,13 @@
 import {
   ReactNode,
   createContext,
+  useCallback,
   useContext,
   useEffect,
   useState,
 } from 'react'
 import { issuesApi, userApi } from '../lib/axios'
+import axios from 'axios'
 
 interface UserGithub {
   name: string
@@ -33,6 +35,7 @@ interface BlogType {
 interface BlogContextType {
   user: UserGithub
   issues: Issue[]
+  searchIssuesRepo: (query: string) => void
 }
 
 interface BlogProviderProps {
@@ -64,11 +67,25 @@ export function BlogProvider({ children }: BlogProviderProps) {
 
   async function fetchIssuesRepo() {
     const response = await issuesApi.get(
-      `https://api.github.com/repos/rocketseat-education/reactjs-github-blog-challenge/issues`,
+      `rocketseat-education/reactjs-github-blog-challenge/issues`,
     )
 
     setBlog((prevBlog) => ({ ...prevBlog, issues: response.data }))
   }
+
+  const searchIssuesRepo = useCallback(async function searchIssuesRepo(
+    query: string,
+  ) {
+    const response = await axios
+      .get(
+        `https://api.github.com/search/issues?q=${query}%20repo:rocketseat-education/reactjs-github-blog-challenge`,
+      )
+      .catch((err) => {
+        throw new Error(`Erro: ${err}`)
+      })
+
+    setBlog((prevBlog) => ({ ...prevBlog, issues: response.data.items }))
+  }, [])
 
   useEffect(() => {
     fetchUserGithub('raiane-oliveira')
@@ -76,7 +93,7 @@ export function BlogProvider({ children }: BlogProviderProps) {
   }, [])
 
   return (
-    <BlogContext.Provider value={{ user, issues }}>
+    <BlogContext.Provider value={{ user, issues, searchIssuesRepo }}>
       {children}
     </BlogContext.Provider>
   )

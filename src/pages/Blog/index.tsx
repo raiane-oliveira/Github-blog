@@ -22,18 +22,20 @@ export function Blog() {
         <SearchForm />
 
         <PostsContainer>
-          {issues.map((issue) => (
-            <PostCard key={issue.id} to={`/post/${issue.number}`}>
-              <PostCardTitle>
-                <span>{issue.title}</span>
-                <time>{formatDate(issue.created_at)}</time>
-              </PostCardTitle>
+          {issues.map((issue) => {
+            return (
+              <PostCard key={issue.id} to={`/post/${issue.number}`}>
+                <PostCardTitle>
+                  <span>{issue.title}</span>
+                  <time>{formatDate(issue.created_at)}</time>
+                </PostCardTitle>
 
-              <PostCardBody>
-                <ReactMarkdown>{issue.body}</ReactMarkdown>
-              </PostCardBody>
-            </PostCard>
-          ))}
+                <PostCardBody>
+                  <ReactMarkdown>{issue.body}</ReactMarkdown>
+                </PostCardBody>
+              </PostCard>
+            )
+          })}
         </PostsContainer>
       </BlogContainer>
     </main>

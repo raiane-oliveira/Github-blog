@@ -9,12 +9,13 @@ export const BlogContainer = styled.div`
   margin: 2.5rem 1rem;
 `
 
-export const PostsContainer = styled.div``
+export const PostsContainer = styled.div`
+  display: grid;
+  grid-template-columns: 100%;
+  gap: 2rem;
+`
 
 export const PostCard = styled(Link)`
-  & + & {
-    margin-top: 1rem;
-  }
   text-decoration: none;
 
   display: flex;
@@ -40,7 +41,7 @@ export const PostCardTitle = styled.section`
 
   time {
     margin-top: 0.25rem;
-    font-size: 0.675rem;
+    font-size: 0.875rem;
     color: ${(props) => props.theme['base-span']};
     line-height: 1.6;
     text-align: right;
