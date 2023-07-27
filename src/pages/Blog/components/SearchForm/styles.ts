@@ -19,6 +19,7 @@ export const TitleSearchFormContainer = styled.div`
 `
 
 export const TitleSearchForm = styled.div`
+  color: ${(props) => props.theme['base-subtitle']};
   font-size: 1.125rem;
   line-height: 1.6;
   font-weight: 700;

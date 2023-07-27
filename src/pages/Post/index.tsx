@@ -1,9 +1,6 @@
 import { Link, LoaderFunctionArgs, useLoaderData } from 'react-router-dom'
 import { Issue } from '../../reducers/blog/reducer'
 import { formatDate } from '../../utils/formatter'
-import ReactMarkdown from 'react-markdown'
-import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter'
-import { dracula } from 'react-syntax-highlighter/dist/esm/styles/prism'
 
 import { FaChevronLeft, FaCalendarDay, FaComment } from 'react-icons/fa'
 import { RiShareBoxLine, RiGithubFill } from 'react-icons/ri'
@@ -17,18 +14,33 @@ import {
 } from './styles'
 import { issuesApi } from '../../lib/axios'
 import { repoURL } from '../../utils/repoURL'
+import { Comments } from './components/Comments'
+import { MarkdownConverter } from '../../components/MarkdownConverter'
 
-interface LoaderDataProps {
+interface Comment {
+  id: number
+  html_url: string
+  user: {
+    login: string
+    html_url: string
+    avatar_url: string
+  }
+  created_at: string
+  body: string
+}
+
+export interface LoaderDataProps {
   post: Issue
+  comments: Comment[]
 }
 
 export async function loader({ request }: LoaderFunctionArgs) {
   const url = new URL(request.url)
   const numberIssue = Number(url.pathname.split('/').pop())
   const response = await issuesApi.get(`${repoURL}/issues/${numberIssue}`)
+  const comments = await issuesApi.get(response.data.comments_url)
 
-  const post = response.data
-  return { post }
+  return { post: response.data, comments: comments.data }
 }
 
 export function Post() {
@@ -73,31 +85,10 @@ export function Post() {
       </PostInfo>
 
       <ContentPost>
-        <ReactMarkdown
-          components={{
-            code({ inline, className, children, ...props }) {
-              const match = /language-(\w+)/.exec(className || '')
-              return !inline && match ? (
-                <SyntaxHighlighter
-                  {...props}
-                  style={dracula}
-                  language={match[1]}
-                  PreTag="div"
-                  wrapLongLines={true}
-                >
-                  {String(children).replace(/\n$/, '')}
-                </SyntaxHighlighter>
-              ) : (
-                <code {...props} className={className}>
-                  {children}
-                </code>
-              )
-            },
-          }}
-        >
-          {post.body}
-        </ReactMarkdown>
+        <MarkdownConverter>{post.body}</MarkdownConverter>
       </ContentPost>
+
+      <Comments />
     </PostContainer>
   )
 }
