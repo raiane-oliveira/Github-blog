@@ -16,6 +16,7 @@ import {
   SmallInfoPost,
 } from './styles'
 import { issuesApi } from '../../lib/axios'
+import { repoURL } from '../../utils/repoURL'
 
 interface LoaderDataProps {
   post: Issue
@@ -24,9 +25,7 @@ interface LoaderDataProps {
 export async function loader({ request }: LoaderFunctionArgs) {
   const url = new URL(request.url)
   const numberIssue = Number(url.pathname.split('/').pop())
-  const response = await issuesApi.get(
-    `rocketseat-education/reactjs-github-blog-challenge/issues/${numberIssue}`,
-  )
+  const response = await issuesApi.get(`${repoURL}/issues/${numberIssue}`)
 
   const post = response.data
   return { post }

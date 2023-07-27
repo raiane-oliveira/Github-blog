@@ -7,6 +7,7 @@ import {
   useState,
 } from 'react'
 import { issuesApi, userApi } from '../lib/axios'
+import { repoURL } from '../utils/repoURL'
 import axios from 'axios'
 
 interface UserGithub {
@@ -68,14 +69,11 @@ export function BlogProvider({ children }: BlogProviderProps) {
   }
 
   async function fetchIssuesRepo() {
-    const response = await issuesApi.get(
-      `rocketseat-education/reactjs-github-blog-challenge/issues`,
-      {
-        params: {
-          sort: 'created',
-        },
+    const response = await issuesApi.get(`${repoURL}/issues`, {
+      params: {
+        sort: 'created',
       },
-    )
+    })
 
     setBlog((prevBlog) => ({ ...prevBlog, issues: response.data }))
   }
@@ -85,7 +83,7 @@ export function BlogProvider({ children }: BlogProviderProps) {
   ) {
     const response = await axios
       .get(
-        `https://api.github.com/search/issues?q=${query}%20repo:rocketseat-education/reactjs-github-blog-challenge`,
+        `https://api.github.com/search/issues?q=${query}%20repo:${repoURL}`,
         {
           params: {
             sort: 'created',
