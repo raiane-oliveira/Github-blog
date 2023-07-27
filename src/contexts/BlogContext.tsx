@@ -81,14 +81,12 @@ export function BlogProvider({ children }: BlogProviderProps) {
   }
 
   const searchIssuesRepo = useCallback(async (query: string) => {
-    const response = await searchApi.get(
-      `/issues?q=${query}%20repo:${repoURL}%20state:open`,
-      {
-        params: {
-          sort: 'created',
-        },
+    const response = await searchApi.get(`/issues`, {
+      params: {
+        q: `${query} repo:${repoURL} state:open`,
+        sort: 'created',
       },
-    )
+    })
 
     const issues = response.data.items.map((issue: Issue) => {
       return {
