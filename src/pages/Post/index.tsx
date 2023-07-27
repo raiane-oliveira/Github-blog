@@ -1,5 +1,5 @@
 import { Link, LoaderFunctionArgs, useLoaderData } from 'react-router-dom'
-import { Issue, useBlogContext } from '../../contexts/BlogContext'
+import { Issue } from '../../reducers/blog/reducer'
 import { formatDate } from '../../utils/formatter'
 import ReactMarkdown from 'react-markdown'
 import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter'
@@ -32,7 +32,6 @@ export async function loader({ request }: LoaderFunctionArgs) {
 }
 
 export function Post() {
-  const { user } = useBlogContext()
   const { post } = useLoaderData() as LoaderDataProps
 
   return (
@@ -55,7 +54,7 @@ export function Post() {
         <SmallInfoPost>
           <div>
             <RiGithubFill />
-            <span>{user.login}</span>
+            <span>{post.user.login}</span>
           </div>
 
           <div>

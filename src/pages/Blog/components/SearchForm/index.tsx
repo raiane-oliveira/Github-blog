@@ -11,6 +11,7 @@ export function SearchForm() {
   const { searchIssuesRepo, issues } = useBlogContext()
   const submit = useSubmit()
 
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   function handleSearchPostsBlog(e: any) {
     submit(e.target.firstElementChild.form)
     searchIssuesRepo(e.target.firstElementChild.value)

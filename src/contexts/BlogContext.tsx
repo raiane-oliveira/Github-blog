@@ -4,36 +4,18 @@ import {
   useCallback,
   useContext,
   useEffect,
-  useState,
+  useReducer,
 } from 'react'
-import { issuesApi, userApi } from '../lib/axios'
+
+import { issuesApi, searchApi, userApi } from '../lib/axios'
 import { repoURL } from '../utils/repoURL'
-import axios from 'axios'
 
-interface UserGithub {
-  name: string
-  avatar_url: string
-  html_url: string
-  bio: string
-  login: string
-  company: string | null
-  followers: number
-}
-
-export interface Issue {
-  id: number
-  title: string
-  body: string
-  created_at: string
-  number: number
-  comments: number
-  html_url: string
-}
-
-interface BlogType {
-  user: UserGithub
-  issues: Issue[]
-}
+import { Issue, UserGithub, blogReducer } from '../reducers/blog/reducer'
+import {
+  fetchGithubUserAction,
+  fetchIssuesRepoAction,
+  searchIssuesRepoAction,
+} from '../reducers/blog/actions'
 
 interface BlogContextType {
   user: UserGithub
@@ -48,7 +30,7 @@ interface BlogProviderProps {
 export const BlogContext = createContext({} as BlogContextType)
 
 export function BlogProvider({ children }: BlogProviderProps) {
-  const [blog, setBlog] = useState<BlogType>({
+  const [blog, dispatch] = useReducer(blogReducer, {
     user: {
       name: '',
       avatar_url: '',
@@ -60,12 +42,11 @@ export function BlogProvider({ children }: BlogProviderProps) {
     },
     issues: [],
   })
-
   const { user, issues } = blog
 
   async function fetchUserGithub(username: string) {
     const response = await userApi.get(`/${username}`)
-    setBlog((prevBlog) => ({ ...prevBlog, user: response.data }))
+    dispatch(fetchGithubUserAction(response.data))
   }
 
   async function fetchIssuesRepo() {
@@ -75,26 +56,20 @@ export function BlogProvider({ children }: BlogProviderProps) {
       },
     })
 
-    setBlog((prevBlog) => ({ ...prevBlog, issues: response.data }))
+    dispatch(fetchIssuesRepoAction(response.data))
   }
 
-  const searchIssuesRepo = useCallback(async function searchIssuesRepo(
-    query: string,
-  ) {
-    const response = await axios
-      .get(
-        `https://api.github.com/search/issues?q=${query}%20repo:${repoURL}`,
-        {
-          params: {
-            sort: 'created',
-          },
+  const searchIssuesRepo = useCallback(async (query: string) => {
+    const response = await searchApi.get(
+      `/issues?q=${query}%20repo:${repoURL}`,
+      {
+        params: {
+          sort: 'created',
         },
-      )
-      .catch((err) => {
-        throw new Error(`Erro: ${err}`)
-      })
+      },
+    )
 
-    setBlog((prevBlog) => ({ ...prevBlog, issues: response.data.items }))
+    dispatch(searchIssuesRepoAction(response.data.items))
   }, [])
 
   useEffect(() => {
