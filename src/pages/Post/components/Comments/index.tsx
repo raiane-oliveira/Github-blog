@@ -1,6 +1,7 @@
 import { useLoaderData } from 'react-router-dom'
 import { LoaderDataProps } from '../..'
 import { MarkdownConverter } from '../../../../components/MarkdownConverter'
+import { formatDate } from '../../../../utils/formatter'
 
 import {
   AuthorContainer,
@@ -9,7 +10,6 @@ import {
   NoCommentsAlert,
   TitleCommentsContainer,
 } from './styles'
-import { formatDate } from '../../../../utils/formatter'
 
 export function Comments() {
   const { comments } = useLoaderData() as LoaderDataProps
@@ -22,7 +22,9 @@ export function Comments() {
           <CommentContent key={comment.id}>
             <AuthorContainer>
               <img src={comment.user.avatar_url} alt="" />
-              <a href={comment.user.html_url}>{comment.user.login}</a>
+              <a href={comment.user.html_url} target="_blank" rel="noreferrer">
+                {comment.user.login}
+              </a>
               <span>{formatDate(comment.created_at)}</span>
             </AuthorContainer>
 

@@ -5,7 +5,6 @@ export interface UserGithub {
   name: string
   avatar_url: string
   html_url: string
-  bio: string
   login: string
   company: string | null
   followers: number
@@ -21,7 +20,6 @@ export interface Issue {
   user: { login: string }
   html_url: string
   comments_url: string
-  avatar_url: string
 }
 
 export interface BlogType {

@@ -35,7 +35,6 @@ export function BlogProvider({ children }: BlogProviderProps) {
       name: '',
       avatar_url: '',
       html_url: '',
-      bio: '',
       login: '',
       company: null,
       followers: 0,
@@ -46,7 +45,15 @@ export function BlogProvider({ children }: BlogProviderProps) {
 
   async function fetchUserGithub(username: string) {
     const response = await userApi.get(`/${username}`)
-    dispatch(fetchGithubUserAction(response.data))
+    const userGihub: UserGithub = {
+      name: response.data.name,
+      avatar_url: response.data.avatar_url,
+      company: response.data.company,
+      followers: response.data.followers,
+      html_url: response.data.html_url,
+      login: response.data.login,
+    }
+    dispatch(fetchGithubUserAction(userGihub))
   }
 
   async function fetchIssuesRepo() {
@@ -56,7 +63,21 @@ export function BlogProvider({ children }: BlogProviderProps) {
       },
     })
 
-    dispatch(fetchIssuesRepoAction(response.data))
+    const issues = response.data.map((issue: Issue) => {
+      return {
+        id: issue.id,
+        title: issue.title,
+        body: issue.body,
+        created_at: issue.created_at,
+        number: issue.number,
+        comments: issue.comments,
+        user: { login: issue.user.login },
+        html_url: issue.html_url,
+        comments_url: issue.comments_url,
+      }
+    })
+
+    dispatch(fetchIssuesRepoAction(issues))
   }
 
   const searchIssuesRepo = useCallback(async (query: string) => {
@@ -69,7 +90,21 @@ export function BlogProvider({ children }: BlogProviderProps) {
       },
     )
 
-    dispatch(searchIssuesRepoAction(response.data.items))
+    const issues = response.data.items.map((issue: Issue) => {
+      return {
+        id: issue.id,
+        title: issue.title,
+        body: issue.body,
+        created_at: issue.created_at,
+        number: issue.number,
+        comments: issue.comments,
+        user: { login: issue.user.login },
+        html_url: issue.html_url,
+        comments_url: issue.comments_url,
+      }
+    })
+
+    dispatch(searchIssuesRepoAction(issues))
   }, [])
 
   useEffect(() => {
