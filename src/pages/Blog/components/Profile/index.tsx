@@ -30,9 +30,9 @@ export function Profile() {
         </TitleContainer>
 
         <p>
-          Desenvolvedora Front-end especializada em React e seu ecossistema,
-          além de utilizar as ferramentas mais usadas do mercado como
-          TypeScript, Styled Components e TailwindCSS.
+          Desenvolvedora Front-end especializada no ecossistema React,
+          utilizando as ferramentas mais modernas do mercado como TypeScript,
+          Styled Components e TailwindCSS.
         </p>
 
         <SocialMediaContainer>
