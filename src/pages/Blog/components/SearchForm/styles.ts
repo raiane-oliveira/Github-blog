@@ -1,4 +1,3 @@
-import { Form } from 'react-router-dom'
 import { styled } from 'styled-components'
 
 export const SearchFormContainer = styled.section`
@@ -25,7 +24,7 @@ export const TitleSearchForm = styled.div`
   font-weight: 700;
 `
 
-export const FormContainer = styled(Form)`
+export const FormContainer = styled.form`
   width: 100%;
 
   input {

@@ -1,4 +1,3 @@
-import { useSubmit } from 'react-router-dom'
 import {
   SearchFormContainer,
   TitleSearchForm,
@@ -9,12 +8,11 @@ import { useBlogContext } from '../../../../contexts/BlogContext'
 
 export function SearchForm() {
   const { searchIssuesRepo, issues } = useBlogContext()
-  const submit = useSubmit()
 
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  function handleSearchPostsBlog(e: any) {
-    submit(e.target.firstElementChild.form)
-    searchIssuesRepo(e.target.firstElementChild.value)
+  async function handleSearchPostsBlog(e: any) {
+    e.preventDefault()
+    searchIssuesRepo(e.target.firstElementChild.value.trim())
   }
 
   return (
@@ -26,8 +24,13 @@ export function SearchForm() {
         </span>
       </TitleSearchFormContainer>
 
-      <FormContainer action="/" onSubmit={handleSearchPostsBlog}>
-        <input type="text" placeholder="Buscar conteúdo" name="q" />
+      <FormContainer role="search" onSubmit={handleSearchPostsBlog}>
+        <input
+          type="text"
+          placeholder="Buscar conteúdo"
+          name="q"
+          aria-label="Buscar conteúdo"
+        />
       </FormContainer>
     </SearchFormContainer>
   )

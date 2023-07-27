@@ -61,7 +61,7 @@ export function BlogProvider({ children }: BlogProviderProps) {
 
   const searchIssuesRepo = useCallback(async (query: string) => {
     const response = await searchApi.get(
-      `/issues?q=${query}%20repo:${repoURL}`,
+      `/issues?q=${query}%20repo:${repoURL}%20state:open`,
       {
         params: {
           sort: 'created',
