@@ -29,7 +29,11 @@ export function Profile() {
           </a>
         </TitleContainer>
 
-        <p>{user.bio}</p>
+        <p>
+          Desenvolvedora Front-end especializada em React e seu ecossistema,
+          além de utilizar as ferramentas mais usadas do mercado como
+          TypeScript, Styled Components e TailwindCSS.
+        </p>
 
         <SocialMediaContainer>
           <span>

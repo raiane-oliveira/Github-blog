@@ -118,6 +118,6 @@ export const SocialMediaContainer = styled.div`
   }
 
   @media (min-width: 848px) {
-    margin-top: 1.5rem;
+    margin-top: 1rem;
   }
 `
