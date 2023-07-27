@@ -25,6 +25,8 @@ interface Issue {
   body: string
   created_at: string
   number: number
+  comments: number
+  html_url: string
 }
 
 interface BlogType {

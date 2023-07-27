@@ -4,6 +4,7 @@ import { formatDate } from '../../utils/formatter'
 import { Profile } from './components/Profile'
 import { SearchForm } from './components/SearchForm'
 import {
+  BlogPageContainer,
   BlogContainer,
   PostCard,
   PostCardBody,
@@ -15,7 +16,7 @@ export function Blog() {
   const { issues } = useBlogContext()
 
   return (
-    <main>
+    <BlogPageContainer>
       <Profile />
 
       <BlogContainer>
@@ -38,6 +39,6 @@ export function Blog() {
           })}
         </PostsContainer>
       </BlogContainer>
-    </main>
+    </BlogPageContainer>
   )
 }

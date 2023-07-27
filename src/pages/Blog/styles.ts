@@ -1,18 +1,34 @@
 import { Link } from 'react-router-dom'
 import { styled } from 'styled-components'
 
+export const BlogPageContainer = styled.main`
+  @media (min-width: 848px) {
+    margin: 0 1.5rem;
+  }
+`
+
 export const BlogContainer = styled.div`
   display: flex;
   flex-direction: column;
   gap: 2rem;
 
   margin: 2.5rem 1rem;
+
+  @media (min-width: 848px) {
+    max-width: 1152px;
+    margin: 4.5rem auto;
+    width: 100%;
+  }
 `
 
 export const PostsContainer = styled.div`
   display: grid;
   grid-template-columns: 100%;
   gap: 2rem;
+
+  @media (min-width: 848px) {
+    grid-template-columns: repeat(auto-fit, minmax(26rem, 1fr));
+  }
 `
 
 export const PostCard = styled(Link)`
@@ -20,23 +36,37 @@ export const PostCard = styled(Link)`
 
   display: flex;
   flex-direction: column;
-  gap: 0.8rem;
+  gap: 1rem;
 
-  padding: 1.5rem;
+  @media (min-width: 848px) {
+    gap: 1.25rem;
+  }
+
+  padding: 2rem;
   border-radius: 0.625rem;
+  border: 2px solid transparent;
   background: ${(props) => props.theme['base-post']};
+  transition: 0.3s;
+
+  &:hover {
+    border: 2px solid ${(props) => props.theme['base-label']};
+  }
 `
 
 export const PostCardTitle = styled.section`
   display: flex;
   justify-content: space-between;
-  gap: 1rem;
+  gap: 0.5rem;
 
   span {
     color: ${(props) => props.theme['base-title']};
-    font-size: 1.1rem;
+    font-size: 1.25rem;
     font-weight: 700;
     line-height: 1.4;
+  }
+
+  @media (min-width: 848px) {
+    line-height: 1.6;
   }
 
   time {
@@ -55,7 +85,6 @@ export const PostCardBody = styled.div`
   overflow: hidden;
   text-overflow: ellipsis;
 
-  font-size: 0.875rem;
   line-height: 1.4;
   color: ${(props) => props.theme['base-text']};
 `

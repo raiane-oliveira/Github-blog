@@ -1,6 +1,7 @@
 import { createBrowserRouter } from 'react-router-dom'
 import { Default } from './layouts/Default'
 import { Blog } from './pages/Blog'
+import { Post } from './pages/Post'
 
 export const router = createBrowserRouter([
   {
@@ -13,7 +14,7 @@ export const router = createBrowserRouter([
       },
       {
         path: '/post/:id',
-        element: <div>Post</div>,
+        element: <Post />,
       },
     ],
   },

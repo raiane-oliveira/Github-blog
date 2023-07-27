@@ -8,6 +8,11 @@ export const HeaderContainer = styled.header`
   background: ${(props) => props.theme['base-profile']};
   position: relative;
   overflow-x: hidden;
+
+  @media (min-width: 848px) {
+    height: 18.5rem;
+    padding: 4rem 0;
+  }
 `
 
 const BaseBgEffect = styled.img`
@@ -18,12 +23,26 @@ const BaseBgEffect = styled.img`
   top: 50%;
   transform: translateY(-50%);
   object-fit: cover;
+
+  @media (min-width: 848px) {
+    width: 25.5625rem;
+    height: 11.75rem;
+    object-fit: contain;
+  }
 `
 
 export const BgEffectLeft = styled(BaseBgEffect)`
   left: -1rem;
+
+  @media (min-width: 848px) {
+    left: 0;
+  }
 `
 
 export const BgEffectRight = styled(BaseBgEffect)`
   right: -1rem;
+
+  @media (min-width: 848px) {
+    right: -4rem;
+  }
 `
