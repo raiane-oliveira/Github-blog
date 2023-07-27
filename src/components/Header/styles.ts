@@ -1,11 +1,12 @@
-import { styled } from 'styled-components'
+import { css, styled } from 'styled-components'
 
 export const HeaderContainer = styled.header`
   display: grid;
   justify-content: center;
   padding: 2.5rem 0;
   height: 15rem;
-  background: ${(props) => props.theme['base-profile']};
+  background: ${(props) =>
+    css`linear-gradient(to bottom, ${props.theme['base-profile']}, rgba(20, 88, 156, .1), rgba(21, 98, 175, 0.2),  rgba(20, 88, 156, .1))`};
   position: relative;
   overflow-x: hidden;
 

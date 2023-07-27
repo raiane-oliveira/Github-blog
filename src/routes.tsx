@@ -1,7 +1,7 @@
 import { createBrowserRouter } from 'react-router-dom'
 import { Default } from './layouts/Default'
 import { Blog } from './pages/Blog'
-import { Post } from './pages/Post'
+import { Post, loader as postLoader } from './pages/Post'
 
 export const router = createBrowserRouter([
   {
@@ -15,6 +15,7 @@ export const router = createBrowserRouter([
       {
         path: '/post/:id',
         element: <Post />,
+        loader: postLoader,
       },
     ],
   },

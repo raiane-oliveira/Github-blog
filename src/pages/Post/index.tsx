@@ -1,5 +1,5 @@
-import { Link, useParams } from 'react-router-dom'
-import { useBlogContext } from '../../contexts/BlogContext'
+import { Link, LoaderFunctionArgs, useLoaderData } from 'react-router-dom'
+import { Issue, useBlogContext } from '../../contexts/BlogContext'
 import { formatDate } from '../../utils/formatter'
 import ReactMarkdown from 'react-markdown'
 import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter'
@@ -15,13 +15,28 @@ import {
   PostInfo,
   SmallInfoPost,
 } from './styles'
+import { issuesApi } from '../../lib/axios'
+
+interface LoaderDataProps {
+  post: Issue
+}
+
+export async function loader({ request }: LoaderFunctionArgs) {
+  const url = new URL(request.url)
+  const numberIssue = Number(url.pathname.split('/').pop())
+  const response = await issuesApi.get(
+    `rocketseat-education/reactjs-github-blog-challenge/issues/${numberIssue}`,
+  )
+
+  const post = response.data
+  return { post }
+}
 
 export function Post() {
-  const { id } = useParams()
-  const { user, issues } = useBlogContext()
-  const post = issues.find((issue) => issue.number === Number(id))
+  const { user } = useBlogContext()
+  const { post } = useLoaderData() as LoaderDataProps
 
-  return post ? (
+  return (
     <PostContainer>
       <PostInfo>
         <LinksPostInfo>
@@ -86,7 +101,5 @@ export function Post() {
         </ReactMarkdown>
       </ContentPost>
     </PostContainer>
-  ) : (
-    <div>Loading..</div>
   )
 }

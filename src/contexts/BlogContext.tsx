@@ -19,7 +19,7 @@ interface UserGithub {
   followers: number
 }
 
-interface Issue {
+export interface Issue {
   id: number
   title: string
   body: string
