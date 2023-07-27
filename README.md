@@ -1,27 +1,57 @@
-# React + TypeScript + Vite
+<h1 align="center">
+  <a  href="https://raianeblog.vercel.app/">
+   <div>
+      <img src="src/assets/logo-icon.svg" alt="" />
+    </div>
+    Github Blog
+  </a>
+</h1>
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+<p align="center">
+  <img src="https://badgen.net/npm/v/express" />
+  <img src="https://badgen.net/github/contributors/raiane-oliveira/github-blog" />
+</p>
 
-Currently, two official plugins are available:
+<h4 align="center"> 
+	✔️ Github Blog - Completed  ✔️
+</h4>
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+<p align="center">
+ <a href="#-about">About</a> •
+ <a href="#-features">Features</a> •
+ <a href="#-tech-stack">Tech Stack</a> • 
+ <a href="#-learnings">Learnings</a> •
+ <a href="#-feedbacks">Feedbacks</a>
+</p>
 
-## Expanding the ESLint configuration
+## 💻 About
+An application that use the GitHub API to fetch issues from this repository, search them, and fetch data from my profile and display them as a blog.
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+<img src="https://i.imgur.com/Rh7UwDs.png" />
 
-- Configure the top-level `parserOptions` property like this:
+This challenge was offered in Rocketseat's Ignite course.
 
-```js
-   parserOptions: {
-    ecmaVersion: 'latest',
-    sourceType: 'module',
-    project: ['./tsconfig.json', './tsconfig.node.json'],
-    tsconfigRootDir: __dirname,
-   },
-```
+## 🪸 Features
 
-- Replace `plugin:@typescript-eslint/recommended` to `plugin:@typescript-eslint/recommended-type-checked` or `plugin:@typescript-eslint/strict-type-checked`
-- Optionally add `plugin:@typescript-eslint/stylistic-type-checked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and add `plugin:react/recommended` & `plugin:react/jsx-runtime` to the `extends` list
+- [x] Listing of your profile with image, number of followers, name, and other information available through the GitHub API.
+- [x] List and filter all issues in the repository with a short summary of its contents
+- [x] Create a page to display a complete post (issue)
+- [x] List post's comments
+
+## 🛠 Tech Stack
+
+- React
+  - `React Router`
+  - `React markdown`
+  - `react-syntax-highlighter`
+  - `immer`
+- date-fns
+- Axios
+- TypeScript
+- Styled Components
+- [Phosphor Icons](https://phosphoricons.com/)
+
+## 🤝 Feedbacks
+
+If you have opinions on how I can improve this application, please send me a message on <a href="https://www.linkedin.com/in/raiane-oliveira-dev">Linkedin</a> or an <a href="mailto:raiane.oliveira404@gmail.com">email</a>.
+I will be happy to answer and learn more from you! ;)
