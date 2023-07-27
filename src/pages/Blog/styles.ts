@@ -87,4 +87,8 @@ export const PostCardBody = styled.div`
 
   line-height: 1.4;
   color: ${(props) => props.theme['base-text']};
+
+  * {
+    font-size: 1rem;
+  }
 `

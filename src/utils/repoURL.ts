@@ -1,1 +1,1 @@
-export const repoURL = 'rocketseat-education/reactjs-github-blog-challenge'
+export const repoURL = 'raiane-oliveira/github-blog'
