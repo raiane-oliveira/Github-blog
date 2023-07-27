@@ -20,7 +20,6 @@
  <a href="#-about">About</a> •
  <a href="#-features">Features</a> •
  <a href="#-tech-stack">Tech Stack</a> • 
- <a href="#-learnings">Learnings</a> •
  <a href="#-feedbacks">Feedbacks</a>
 </p>
 
