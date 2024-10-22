@@ -20,16 +20,16 @@
  <a href="#-about">About</a> •
  <a href="#-features">Features</a> •
  <a href="#-tech-stack">Tech Stack</a> • 
- <a href="#-learnings">Learnings</a> •
  <a href="#-feedbacks">Feedbacks</a>
 </p>
 
 ## 💻 About
-An application that use the GitHub API to fetch issues from this repository, search them, and fetch data from my profile and display them as a blog.
+An application that uses the GitHub API to fetch issues from this repository, search them, fetch data from my profile, and display them as a blog.
 
 <img src="https://i.imgur.com/Rh7UwDs.png" />
 
-This challenge was offered in Rocketseat's Ignite course.
+This challenge was offered in Rocketseat's Ignite course. <br />
+Its responsiveness was built using the mobile-first technique.
 
 ## 🪸 Features
 
