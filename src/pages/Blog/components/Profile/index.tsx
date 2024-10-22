@@ -30,9 +30,10 @@ export function Profile() {
         </TitleContainer>
 
         <p>
-          Desenvolvedora Front-end especializada no ecossistema React,
-          utilizando as ferramentas mais modernas do mercado como TypeScript,
-          Styled Components e TailwindCSS.
+          Desenvolvedora Full-Stack trabalhando há {new Date().getFullYear() - 2022} anos para entender 
+          como criar softwares melhores, mais acessíveis e escaláveis. 
+          Gosto da inovação e busco sempre aprender a fundo sobre tudo relacionado
+          ao universo computacional.
         </p>
 
         <SocialMediaContainer>
